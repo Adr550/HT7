@@ -1,17 +1,18 @@
 package com.example;
 import java.io.*;
-import java.util.*;
+
 
 class ManagerProducto {
-    private BinarySearchTree<Producto> bst;
+    private BinarySearchTree<Producto> bab;
 
     public ManagerProducto() {
-        this.bst = new BinarySearchTree<>();
+        this.bab = new BinarySearchTree<>();
     }
 
    
     public void loadProducts(String filePath) {
-        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+        String CSVReader = "src/main/resources/home_appliance_skus_lowes.csv";
+        try (BufferedReader br = new BufferedReader(new FileReader(CSVReader))) {
             String line;
             br.readLine(); 
 
@@ -25,10 +26,10 @@ class ManagerProducto {
                 String category = data[4].trim();
 
                 Producto product = new Producto(sku, priceRetail, priceCurrent, productName, category);
-                bst.insert(product);
+                bab.insert(product);
             }
 
-            System.out.println("Productos cargados en el BST.");
+            System.out.println("Productos cargados al arbol.");
         } catch (IOException | NumberFormatException e) {
             System.err.println("Error al cargar los productos: " + e.getMessage());
         }
@@ -37,7 +38,7 @@ class ManagerProducto {
     public Producto searchProduct(String skuString) {
         try {
             int sku = Integer.parseInt(skuString);
-            return bst.search(new Producto(sku, 0, 0, "", ""));
+            return bab.search(new Producto(sku, 0, 0, "", ""));
         } catch (NumberFormatException e) {
             System.err.println("Error: SKU inválido.");
             return null;
