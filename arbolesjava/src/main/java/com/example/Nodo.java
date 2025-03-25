@@ -1,10 +1,11 @@
 package com.example;
 
-class Nodo {
-    Producto product;
-    Nodo left, right;
+class Nodo<T> {
+    T product;
+    Nodo<T> left, right;
 
-    public Nodo(Producto product) {
+    public Nodo(T product) {
         this.product = product;
+        this.left = this.right = null;
     }
 }

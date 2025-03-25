@@ -1,29 +1,30 @@
 package com.example;
 
-class BinarySearchTree {
-    private Nodo root;
+class BinarySearchTree<T extends Comparable<T>> {
+    private Nodo<T> root;
 
-    public void insert(Producto product) {
-        root = insertRec(root, product);
+    public void insert(T data) {
+        root = insertRec(root, data);
     }
 
-    private Nodo insertRec(Nodo root, Producto product) {
-        if (root == null) return new Nodo(product);
-        if (product.sku.compareTo(root.product.sku) < 0) {
-            root.left = insertRec(root.left, product);
-        } else if (product.sku.compareTo(root.product.sku) > 0) {
-            root.right = insertRec(root.right, product);
+    private Nodo<T> insertRec(Nodo<T> root, T prodcut) {
+        if (root == null) return new Nodo<>(prodcut);
+
+        if (prodcut.compareTo(root.product) < 0) {
+            root.left = insertRec(root.left, prodcut);
+        } else if (prodcut.compareTo(root.product) > 0) {
+            root.right = insertRec(root.right, prodcut);
         }
         return root;
     }
 
-    public Producto search(String sku) {
-        return searchRec(root, sku);
+    public T search(T prodcut) {
+        return searchRec(root, prodcut);
     }
 
-    private Producto searchRec(Nodo root, String sku) {
+    private T searchRec(Nodo<T> root, T product) {
         if (root == null) return null;
-        if (root.product.sku.equals(sku)) return root.product;
-        return sku.compareTo(root.product.sku) < 0 ? searchRec(root.left, sku) : searchRec(root.right, sku);
+        if (root.product.equals(product)) return root.product;
+        return product.compareTo(root.product) < 0 ? searchRec(root.left, product) : searchRec(root.right, product);
     }
 }
