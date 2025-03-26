@@ -7,19 +7,19 @@ class BinarySearchTree<T extends Comparable<T>> {
         root = insertRec(root, data);
     }
 
-    private Nodo<T> insertRec(Nodo<T> root, T prodcut) {
-        if (root == null) return new Nodo<>(prodcut);
+    private Nodo<T> insertRec(Nodo<T> root, T product) {
+        if (root == null) return new Nodo<>(product);
 
-        if (prodcut.compareTo(root.product) < 0) {
-            root.left = insertRec(root.left, prodcut);
-        } else if (prodcut.compareTo(root.product) > 0) {
-            root.right = insertRec(root.right, prodcut);
+        if (product.compareTo(root.product) < 0) {
+            root.left = insertRec(root.left, product);
+        } else if (product.compareTo(root.product) > 0) {
+            root.right = insertRec(root.right, product);
         }
         return root;
     }
 
-    public T search(T prodcut) {
-        return searchRec(root, prodcut);
+    public T search(T product) {
+        return searchRec(root, product);
     }
 
     private T searchRec(Nodo<T> root, T product) {
