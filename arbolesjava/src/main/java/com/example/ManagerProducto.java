@@ -7,7 +7,7 @@ class ManagerProducto {
     public ManagerProducto() {
         this.bab = new BinarySearchTree<>();
     }
-
+    //Prompt: Puedes editar este código de modo que pueda identificar si se omitieron elementos en el csv
     public void loadProducts(String fileName) {
         try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream(fileName);
              BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
@@ -37,7 +37,7 @@ class ManagerProducto {
 
                     String sku = data[6].trim();
 
-                    // Handle empty price fields
+
                     double priceRetail = data[9].trim().isEmpty() ? 0.0 : Double.parseDouble(data[9].trim());
                     double priceCurrent = data[10].trim().isEmpty() ? 0.0 : Double.parseDouble(data[10].trim());
 
